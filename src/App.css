@@ -4,7 +4,10 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 3vw;
+  position: absolute;
+  top: 15vw;
+  left: 48vw;
 }
 
 .App-header {
@@ -21,4 +24,33 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.parallax-container{
+  height: 20vw;
+  margin-bottom: 1vw;
+}
+.album{
+  position: relative;
+}
+.albumTitle{
+  position: absolute;
+  bottom:0;
+  left:0;
+  padding:5vw;
+}
+/*from http://cssdeck.com/labs/stack-of-cards*/
+.card-stacked {
+  margin: 0 auto 2rem;
+  padding: 1rem;
+  min-width: 10rem;
+  max-width: 20rem;
+  background-color: white;
+  word-wrap: break-word;
+  box-shadow: 0 0.0625em 0.1875em 0 rgba(0, 0, 0, 0.1), 0 0.5em 0 -0.25em #f2f2f2, 0 0.5em 0.1875em -0.25em rgba(0, 0, 0, 0.1), 0 1em 0 -0.5em #e5e5e5, 0 1em 0.1875em -0.5em rgba(0, 0, 0, 0.1);
+}
+body{
+  background-color: #ccc
+}
+.tiyLogo {
+  height:20vw;
 }
