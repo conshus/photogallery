@@ -7,6 +7,7 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+//import $ from 'jquery';
 
 class App extends Component {
   render() {

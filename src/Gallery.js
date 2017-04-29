@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router';
+import $ from 'jquery';
 
 const ALBUMS = [
   {id: 0, title:'Album 0', cover: 'https://ia601507.us.archive.org/6/items/OurShow4-22-17/4-22-17-1400.jpg'},
@@ -11,7 +13,11 @@ const ALBUMS = [
 ]
 
 class Gallery extends Component {
-
+  componentDidUpdate() {
+    $('.parallax').parallax();
+    $('.modal').modal();
+    $('.materialboxed').materialbox();
+   }
   render () {
     return (
       <div className="gallerySection">
