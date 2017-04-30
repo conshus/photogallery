@@ -12,7 +12,7 @@ import {
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router forceRefresh={true}>
         <div className="App">
           {/*<div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
