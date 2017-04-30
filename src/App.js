@@ -14,7 +14,14 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      speed: 10
+      albums: [
+        {id: 0, title:'Album 0', photos: ['https://ia601507.us.archive.org/6/items/OurShow4-22-17/4-22-17-1400.jpg','https://ia601507.us.archive.org/6/items/OurShow4-22-17/4-22-17-1400.jpg']},
+        // {id: 1, title:'Album 1', cover: 'https://ia601507.us.archive.org/6/items/OurShow4-15-17/4-15-17-1400.jpg'},
+        // {id: 2, title:'Album 2', cover: 'https://ia601507.us.archive.org/6/items/OurShow4-8-17/4-8-17-1400.jpg'},
+        // {id: 3, title:'Album 3', cover: 'https://ia601507.us.archive.org/6/items/OurShow4-1-17/4-1-17-1400.jpg'},
+        // {id: 4, title:'Album 4', cover: 'https://ia601507.us.archive.org/6/items/OurShow3-25-17/3-25-17-1400.jpg'},
+        // {id: 5, title:'Album 5', cover: 'https://ia601507.us.archive.org/6/items/OurShow3-18-17/3-18-17-1400.jpg'}
+      ]
     };
   }
   componentDidMount(){
@@ -26,6 +33,19 @@ class App extends Component {
         speed: snap.val()
       });
     });
+  }
+  addAlbum(title, cover){
+    console.log('addAlbum in App.js:', title, cover);
+    var newAlbumKey = firebase.database().ref().child('albums').push().key;
+    let newAlbum = { id: this.state.albums.length, title: title, photos: [cover] }
+    firebase.database().ref('albums/'+newAlbumKey).set(newAlbum)
+    // let newAlbumsArray = this.state.albums.concat(newAlbum)
+    // this.setState({
+    //   albums: newAlbumsArray
+    // })
+  }
+  addPhoto(photoUrl){
+    console.log('add photo');
   }
   render() {
     return (
@@ -40,8 +60,8 @@ class App extends Component {
           </p>*/}
           <Header />
           <h1>{this.state.speed}</h1>
-          <Route exact path="/:filter?" render={(defaultProps) =>  <Gallery {...defaultProps}/>} />
-          <Route path="/album/:filter?" render={(defaultProps) =>  <Album {...defaultProps}/>} />
+          <Route exact path="/:filter?" render={(defaultProps) =>  <Gallery albums={this.state.albums} sendAlbumInfoToApp={this.addAlbum.bind(this)} {...defaultProps}/>} />
+          <Route path="/album/:albumId?" render={(defaultProps) =>  <Album albums={this.state.albums} sendPhotoInfoToApp={this.addPhoto.bind(this)} {...defaultProps}/>} />
         </div>
       </Router>
     );
