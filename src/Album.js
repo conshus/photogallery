@@ -5,6 +5,8 @@ class Album extends Component {
   render () {
     return (
       <div className="albumSection">
+        <h1>{this.props.speed}</h1>
+
         <section className="container">
           <div className="row">
             <div className="col s12 m6 l4 album">

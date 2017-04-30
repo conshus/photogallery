@@ -7,9 +7,26 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-//import $ from 'jquery';
+import * as firebase from 'firebase';
 
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      speed: 10
+    };
+  }
+  componentDidMount(){
+    console.log('componentDidMount')
+    const rootRef = firebase.database().ref().child('albums');
+    const speedRef = rootRef.child('speed');
+    speedRef.on('value', snap => {
+      this.setState({
+        speed: snap.val()
+      });
+    });
+  }
   render() {
     return (
       <Router forceRefresh={true}>
@@ -22,6 +39,7 @@ class App extends Component {
             To get started, edit <code>src/App.js</code> and save to reload.
           </p>*/}
           <Header />
+          <h1>{this.state.speed}</h1>
           <Route exact path="/:filter?" render={(defaultProps) =>  <Gallery {...defaultProps}/>} />
           <Route path="/album/:filter?" render={(defaultProps) =>  <Album {...defaultProps}/>} />
         </div>
