@@ -13,28 +13,34 @@ import { Link } from 'react-router-dom';
 
 class Gallery extends Component {
   handleKeyPress(event) {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     if ((event.key ==='Enter') && (event.target.value.length > 0)){
-      console.log(event.target.value)
+      //console.log(event.target.value)
       //this.props.sendWordsToApp(event.target.value)
       event.target.value ="";
     }
   }
   addAlbum(){
-    console.log('add album', document.getElementById('albumName').value, document.getElementById('albumCover').value);
+    //console.log('add album', document.getElementById('albumName').value, document.getElementById('albumCover').value);
     this.props.sendAlbumInfoToApp(document.getElementById('albumName').value, document.getElementById('albumCover').value)
   }
+
+  sendAlbumId(albumId){
+    //console.log('send album id', albumId);
+    this.props.sendAlbumIdToApp(albumId);
+  }
+
 
   render () {
     return (
       <div className="gallerySection">
         <section className="container">
           <div className="row">
-            {console.log('this.props.albums',this.props.albums)}
+            {/* {console.log('this.props.albums',this.props.albums)} */}
             {this.props.albums.map(album => (<div className="col s12 m6 l4 album">
-              <Link key={album.id} to={{ pathname: `/album/${album.id}`}}>
-                <img className="responsive-img card-stacked" src={album.photos[0]} />
-                <div className="albumTitle flow-text">{album.title}</div>
+              <Link key={album.id} to={{ pathname: `/album/${album.id}`}} onClick={this.sendAlbumId.bind(this,album.id)}>
+                <img className="responsive-img card-stacked" src={album.photos[0]} alt="album cover"/>
+                {/* <div className="albumTitle flow-text">{album.title}</div> */}
               </Link>
             </div>))}
             {/* <div className="col s12 m6 l4 album">

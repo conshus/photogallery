@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Album extends Component {
-  addPhoto(){
-    console.log('add photo', document.getElementById('photoUrl').value);
-    this.props.sendPhotoInfoToApp(document.getElementById('photoUrl').value)
+  addPhoto(albumId){
+    //console.log('albumId', albumId.albumId)
+    //console.log('add photo', document.getElementById('photoUrl').value);
+    this.props.sendPhotoInfoToApp(albumId.albumId,document.getElementById('photoUrl').value)
   }
+
+  sendAlbumId(albumId){
+    //console.log('send album id', albumId);
+    this.props.sendAlbumIdToApp(albumId);
+  }
+
+    // sendAlbumId(match.params.albumId)
 
   render () {
     const albumId = this.props.match.params.albumId;
@@ -15,41 +23,54 @@ class Album extends Component {
           <li>
             <div className="collapsible-header"><i className="material-icons">perm_media</i>Album list</div>
             <div className="collapsible-body">
-              <span>Lorem ipsum dolor sit amet.</span>
+              {/* <div className="carousel">
+                  <a className="carousel-item" href="#one!"><img src="http://lorempixel.com/250/250/nature/1"/></a>
+                  <a className="carousel-item" href="#two!"><img src="http://lorempixel.com/250/250/nature/2"/></a>
+                  <a className="carousel-item" href="#three!"><img src="http://lorempixel.com/250/250/nature/3"/></a>
+                  <a className="carousel-item" href="#four!"><img src="http://lorempixel.com/250/250/nature/4"/></a>
+                  <a className="carousel-item" href="#five!"><img src="http://lorempixel.com/250/250/nature/5"/></a>
+              </div> */}
               <div className="row">
-                {this.props.albums.map(album => (<div className="col s12 m6 l4 album">
-                  <Link key={album.id} to={{ pathname: `/album/${album.id}`}}>
-                    <img className="responsive-img card-stacked" src={album.photos[0]} />
-                    <div className="albumTitle flow-text">{album.title}</div>
+                {this.props.albums.map(album => (<div className="col s6 m2 l2 album">
+                  <Link key={album.id} to={{ pathname: `/album/${album.id}`}} onClick={this.sendAlbumId.bind(this,album.id)}>
+                    <img className="responsive-img card-stacked" src={album.photos[0]} alt="album cover"/>
+                    {/* <div className="albumTitle flow-text">{album.title}</div> */}
                   </Link>
                 </div>))}
               </div>
             </div>
           </li>
         </ul>
-        {console.log(this.props.match.params.albumId)}
-        {console.log('this.props.albums',this.props.albums)}
+        {/* {console.log(this.props.match.params.albumId)}
+        {console.log('this.props.albums',this.props.albums)} */}
         {/* <h1>{this.props.match.params.albumId}</h1> */}
-        <h1>{albumId}</h1>
+        {/* <h1>{albumId}</h1> */}
 
         <section className="container">
           <div className="row">
+            <div className="col s12 m6 l4 album">
+
+            {this.props.photos.map(photo => (
+              //console.log(photo)
+                <img className="responsive-img materialboxed" src={photo.photos[0]} alt="album cover"/>
+            ))}
+
 
             {
 
               //this.props.albums.filter(album => album.id == albumId)
               // this.props.albums.filter(function(album, index){
               //   if (album.id === albumId){
-              //     //return(
-              //       console.log('matches',album.id),
-              //       console.log('albumId', albumId),
-              //       <div className="col s12 m6 l4 album">
-              //         <img className="responsive-img materialboxed" src="https://ia601507.us.archive.org/6/items/OurShow4-22-17/4-22-17-1400.jpg" />
-              //       </div>
-              //
-              //     //)
-              //   }
-              // })
+                  //return(
+                    // console.log('matches',album.id),
+                    // console.log('albumId', albumId),
+                    // <div className="col s12 m6 l4 album">
+                    //   <img className="responsive-img materialboxed" src="https://ia801501.us.archive.org/5/items/OurShow4-29-17/4-29-17-1400.jpg" />
+                    // </div>
+
+                  //)
+                //}
+              //})
 
             //
             //   this.props.albums.map((todo, index) => {
@@ -75,8 +96,8 @@ class Album extends Component {
 
 
 
-            <div className="col s12 m6 l4 album">
-              <img className="responsive-img materialboxed" src="https://ia601507.us.archive.org/6/items/OurShow4-22-17/4-22-17-1400.jpg" />
+            {/* <div className="col s12 m6 l4 album"> */}
+              {/* <img className="responsive-img materialboxed" src="https://images.unsplash.com/photo-1484027224881-a91762262d8e" alt="album"/> */}
             </div>
             {/* <div className="col s12 m6 l4">
               <img className="responsive-img" src="https://ia601507.us.archive.org/6/items/OurShow4-22-17/4-22-17-1400.jpg" />
@@ -111,7 +132,7 @@ class Album extends Component {
 
           </div>
           <div className="modal-footer">
-            <a className="modal-action modal-close waves-effect waves-green btn-flat" onClick={this.addPhoto.bind(this)}>Add Photo</a>
+            <a className="modal-action modal-close waves-effect waves-green btn-flat" onClick={this.addPhoto.bind(this,{albumId})}>Add Photo</a>
             <a className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
           </div>
         </div>

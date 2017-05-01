@@ -27,7 +27,7 @@
 }
 .parallax-container{
   height: 20vw;
-  margin-bottom: 1vw;
+  /*margin-bottom: 1vw;*/
 }
 .album{
   position: relative;
@@ -53,4 +53,7 @@ body{
 }
 .tiyLogo {
   height:20vw;
+}
+ul.collapsible{
+  margin-top:0;
 }
