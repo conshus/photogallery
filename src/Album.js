@@ -47,15 +47,18 @@ class Album extends Component {
         {/* <h1>{albumId}</h1> */}
 
         <section className="container">
-          <div className="row">
+          {/* <div className="row">
             <div className="col s12 m6 l4 album">
 
             {this.props.photos.map(photo => (
-              //console.log(photo)
-                <img className="responsive-img materialboxed" src={photo.photos[0]} alt="album cover"/>
+              //console.log(photo.photos.length),
+              for (i=0; i<photo.photos.length){
+                  <img className="responsive-img materialboxed" src={photo[i].photos} alt="album cover"/>
+              }
             ))}
 
-
+            </div>
+          </div> */}
             {
 
               //this.props.albums.filter(album => album.id == albumId)
@@ -95,9 +98,16 @@ class Album extends Component {
 
 
 
+          <div className="row">
 
-            {/* <div className="col s12 m6 l4 album"> */}
-              {/* <img className="responsive-img materialboxed" src="https://images.unsplash.com/photo-1484027224881-a91762262d8e" alt="album"/> */}
+            <div className="col s12 m6 l4 album">
+              <img className="responsive-img materialboxed" src="https://images.unsplash.com/photo-1484027224881-a91762262d8e" alt="album"/>
+            </div>
+            <div className="col s12 m6 l4 album">
+              <img className="responsive-img materialboxed" src="https://images.unsplash.com/photo-1481876453656-5f9968fda498" alt="album"/>
+            </div>
+            <div className="col s12 m6 l4 album">
+              <img className="responsive-img materialboxed" src="https://images.unsplash.com/photo-1474980660552-84fda824db4e" alt="album"/>
             </div>
             {/* <div className="col s12 m6 l4">
               <img className="responsive-img" src="https://ia601507.us.archive.org/6/items/OurShow4-22-17/4-22-17-1400.jpg" />

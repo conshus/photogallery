@@ -24,7 +24,8 @@ class App extends Component {
       ],
       photos:[
         {id:'-Kj0ZlTD9hGymJzGLpOw',
-         photos:['https://images.unsplash.com/photo-1484027224881-a91762262d8e',
+         photos:[
+           'https://images.unsplash.com/photo-1484027224881-a91762262d8e',
            'https://images.unsplash.com/photo-1481876453656-5f9968fda498',
            'https://images.unsplash.com/photo-1474980660552-84fda824db4e'
          ]
