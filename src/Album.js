@@ -17,6 +17,7 @@ class Album extends Component {
 
   render () {
     const albumId = this.props.match.params.albumId;
+    console.log(albumId)
     return (
       <div className="albumSection">
         <ul className="collapsible" data-collapsible="accordion">
@@ -31,7 +32,8 @@ class Album extends Component {
                   <a className="carousel-item" href="#five!"><img src="http://lorempixel.com/250/250/nature/5"/></a>
               </div> */}
               <div className="row">
-                {this.props.albums.map(album => (<div className="col s6 m2 l2 album">
+                {this.props.albums.map(album => (
+                  <div className="col s6 m2 l2 album">
                   <Link key={album.id} to={{ pathname: `/album/${album.id}`}} onClick={this.sendAlbumId.bind(this,album.id)}>
                     <img className="responsive-img card-stacked" src={album.photos[0]} alt="album cover"/>
                     {/* <div className="albumTitle flow-text">{album.title}</div> */}

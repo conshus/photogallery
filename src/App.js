@@ -73,6 +73,7 @@ class App extends Component {
     //console.log('componentDidMount')
     const rootRef = firebase.database().ref().child('albums');
     //const speedRef = rootRef.child('speed');
+    console.log(rootRef.key)
     let newAlbumsArray=[];
     // rootRef.on('value', function(snapshot) {
     //   snapshot.forEach(function(childSnapshot) {
@@ -88,6 +89,16 @@ class App extends Component {
     //   albums: newAlbumsArray
     // })
     // )
+
+    rootRef.once('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        var childKey = childSnapshot.key;
+        var childData = childSnapshot.val();
+        let photos = childData.photos
+        console.log(childKey, childData, photos[0])
+        // ...
+      });
+    });
 
     rootRef.on('child_added', snap => {
         const albumsArray = this.state.albums;
