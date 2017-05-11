@@ -72,3 +72,9 @@ ul.collapsible{
 .modalImage {
   height:80vmin;
 }
+#navButtons{
+  display: flex;
+  position:fixed;
+  top:0;
+  left:50vw;
+}
